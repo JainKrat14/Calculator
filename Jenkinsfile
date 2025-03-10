@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from the repository
-                git 'https://github.com/your-username/my-python-project.git'
+                git 'https://github.com/JainKrat14/Calculator.git'
             }
         }
 
