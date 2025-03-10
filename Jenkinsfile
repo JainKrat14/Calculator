@@ -17,9 +17,12 @@ pipeline {
             steps {
                 // Install Python and dependencies
                 script {
-                    def pythonCheck = sh(script: "python3 --version", returnStatus: true)
+                    def pythonCheck = sh(script: "command -v python3", returnStatus: true)
                     if (pythonCheck != 0) {
-                        sh 'sudo apt update && sudo apt install -y python3'
+                        sh '''
+                        apt update
+                        apt install -y python3
+                        '''
                     }
                     sh 'python3 --version'
                 }
