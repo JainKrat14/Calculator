@@ -12,10 +12,17 @@ pipeline {
                 git 'https://github.com/your-username/my-python-project.git'
             }
         }
-
+        
         stage('Set Up Python Environment') {
             steps {
                 // Install Python and dependencies
+                script {
+                    def pythonCheck = sh(script: "python3 --version", returnStatus: true)
+                    if (pythonCheck != 0) {
+                        sh 'sudo apt update && sudo apt install -y python3'
+                    }
+                    sh 'python3 --version'
+                }
                 sh 'python3 -m venv venv'  // Create a virtual environment
                 sh './venv/bin/pip install -r requirements.txt'  // Install dependencies
             }
